@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#123047"><meta name="description" content="Offline-first maintenance work log and SOP builder"><title>Maintenance SOP Builder</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><div class="brand-mark">M</div><div><h1>Maintenance SOP Builder</h1><p>Capture the work. Preserve the knowledge.</p></div></header>
+<main>
+<div class="notice"><strong>Field record</strong><span>Save drafts on this device. Follow your site’s approved procedures and LOTO requirements.</span></div>
+<section class="panel"><div class="section-heading"><div><span class="eyebrow">01 / WORK RECORD</span><h2>Job details</h2></div><button id="newBtn" class="quiet">New record</button></div>
+<div class="grid two"><label>Work order number *<input id="workOrder" autocomplete="off" placeholder="e.g. WO-123456" required></label><label>Asset number *<input id="assetNumber" autocomplete="off" placeholder="e.g. P-204" required></label></div>
+<label>Claimed fault / reported issue<textarea id="fault" rows="3" placeholder="What was reported? What symptoms were observed?"></textarea></label>
+<label>Safety precautions and LOTO notes<textarea id="safety" rows="4" placeholder="Site-approved isolation points, permits, PPE, stored energy, verification steps…"></textarea></label>
+<div class="grid two"><label>Tools required<textarea id="tools" rows="3" placeholder="List tools used or required"></textarea></label><label>Parts and materials<textarea id="parts" rows="3" placeholder="Part numbers, quantities, materials"></textarea></label></div>
+</section>
+<section class="panel"><div class="section-heading"><div><span class="eyebrow">02 / CHRONOLOGICAL LOG</span><h2>Maintenance steps</h2><p class="sub">Add each action in the order it happened.</p></div><span id="stepCount" class="count">0 steps</span></div><div id="stepsList"></div><button id="addStepBtn" class="primary full">＋ Add maintenance step</button></section>
+<section class="panel"><div class="section-heading"><div><span class="eyebrow">03 / CLOSEOUT</span><h2>Lessons learned</h2></div></div><label>Lessons learned / recommendations<textarea id="lessons" rows="4" placeholder="What would help the next mechanic? Include tips, causes, checks, and follow-up work."></textarea></label><label>Work outcome<select id="outcome"><option value="In progress">In progress</option><option value="Completed — tested">Completed — tested</option><option value="Completed — follow-up required">Completed — follow-up required</option><option value="Unable to complete">Unable to complete</option></select></label></section>
+<section class="panel"><div class="section-heading"><div><span class="eyebrow">04 / SAVE & SHARE</span><h2>Record actions</h2><p class="sub">Records are stored in this browser on this device.</p></div></div><div class="actions"><button id="saveBtn" class="primary">Save draft</button><button id="exportBtn" class="secondary">Export backup</button><button id="importBtn" class="secondary">Import backup</button><input id="importFile" type="file" accept="application/json,.json" hidden><button id="printBtn" class="secondary">Print / Save PDF</button></div><div id="status" role="status" aria-live="polite"></div></section>
+<section class="panel"><div class="section-heading"><div><span class="eyebrow">SAVED ON THIS DEVICE</span><h2>Draft library</h2></div><button id="refreshBtn" class="quiet">Refresh</button></div><div id="draftsList"><p class="sub">No saved drafts yet.</p></div></section>
+<footer>Private-device prototype · Keep company-sensitive information on approved systems only.</footer>
+</main>
+<template id="stepTemplate"><article class="step-card"><div class="step-top"><h3>Step <span class="step-number"></span></h3><button class="quiet remove-step" type="button">Remove</button></div><label>Step description<textarea class="step-description" rows="3" placeholder="Describe the action, checks, measurements, and result."></textarea></label><label>Voice notes<textarea class="step-notes" rows="3" placeholder="Dictate or type the details here. You can edit the transcript before saving."></textarea></label><div class="step-actions"><button type="button" class="secondary dictate">🎙 Dictate notes</button><label class="photo-button">📷 Add photo<input class="step-photo" type="file" accept="image/*" capture="environment" multiple></label></div><p class="voice-hint">Voice dictation availability depends on your browser and device.</p><div class="photo-list"></div></article></template>
+<script src="app.js"></script>
+</body></html>
